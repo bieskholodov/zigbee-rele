@@ -1,5 +1,8 @@
-esphome:
-  name: zb-example-c6
+
+
+
+    esphome:
+  name: zb-rele-16-esp32c6
 
 external_components:
   - source: github://bieskholodov/zigbee_esphome
@@ -28,8 +31,8 @@ logger:
 zigbee:
   id: "zb"
   endpoints:
-    - num: 1
-      device_type: ON_OFF_LIGHT
+    - device_type: ON_OFF_LIGHT
+      num: 1
       clusters:
         - id: ON_OFF
           attributes:
@@ -37,9 +40,10 @@ zigbee:
               type: bool
               on_value:
                 then:
-                  - light.control:
+                  - switch.toggle:
                       id: light_1
-                      state: !lambda "return (bool)x;"
+
+
     - device_type: ON_OFF_LIGHT
       num: 2
       clusters:
@@ -49,9 +53,9 @@ zigbee:
               type: bool
               on_value:
                 then:
-                  - light.control:
+                  - switch.toggle:
                       id: light_2
-                      state: !lambda "return (bool)x;"
+
     - device_type: ON_OFF_LIGHT
       num: 3
       clusters:
@@ -61,31 +65,258 @@ zigbee:
               type: bool
               on_value:
                 then:
-                  - light.control:
+                  - switch.toggle:
                       id: light_3
-                      state: !lambda "return (bool)x;"                      
+                
+    - device_type: ON_OFF_LIGHT
+      num: 4
+      clusters:
+        - id: ON_OFF
+          attributes:
+            - id: 0
+              type: bool
+              on_value:
+                then:
+                  - switch.toggle:
+                      id: light_4
 
+    - device_type: ON_OFF_LIGHT
+      num: 5
+      clusters:
+        - id: ON_OFF
+          attributes:
+            - id: 0
+              type: bool
+              on_value:
+                then:
+                  - switch.toggle:
+                      id: light_5
 
+    - device_type: ON_OFF_LIGHT
+      num: 6
+      clusters:
+        - id: ON_OFF
+          attributes:
+            - id: 0
+              type: bool
+              on_value:
+                then:
+                  - switch.toggle:
+                      id: light_6
 
+    - device_type: ON_OFF_LIGHT
+      num: 7
+      clusters:
+        - id: ON_OFF
+          attributes:
+            - id: 0
+              type: bool
+              on_value:
+                then:
+                  - switch.toggle:
+                      id: light_7
+                
+    - device_type: ON_OFF_LIGHT
+      num: 8
+      clusters:
+        - id: ON_OFF
+          attributes:
+            - id: 0
+              type: bool
+              on_value:
+                then:
+                  - switch.toggle:
+                      id: light_8
 
+    - device_type: ON_OFF_LIGHT
+      num: 9
+      clusters:
+        - id: ON_OFF
+          attributes:
+            - id: 0
+              type: bool
+              on_value:
+                then:
+                  - switch.toggle:
+                      id: light_9
 
-light:
-  - platform: status_led
+    - device_type: ON_OFF_LIGHT
+      num: 10
+      clusters:
+        - id: ON_OFF
+          attributes:
+            - id: 0
+              type: bool
+              on_value:
+                then:
+                  - switch.toggle:
+                      id: light_10
+
+    - device_type: ON_OFF_LIGHT
+      num: 11
+      clusters:
+        - id: ON_OFF
+          attributes:
+            - id: 0
+              type: bool
+              on_value:
+                then:
+                  - switch.toggle:
+                      id: light_11
+
+    - device_type: ON_OFF_LIGHT
+      num: 12
+      clusters:
+        - id: ON_OFF
+          attributes:
+            - id: 0
+              type: bool
+              on_value:
+                then:
+                  - switch.toggle:
+                      id: light_12
+                
+    - device_type: ON_OFF_LIGHT
+      num: 13
+      clusters:
+        - id: ON_OFF
+          attributes:
+            - id: 0
+              type: bool
+              on_value:
+                then:
+                  - switch.toggle:
+                      id: light_13
+
+    - device_type: ON_OFF_LIGHT
+      num: 14
+      clusters:
+        - id: ON_OFF
+          attributes:
+            - id: 0
+              type: bool
+              on_value:
+                then:
+                  - switch.toggle:
+                      id: light_14
+
+    - device_type: ON_OFF_LIGHT
+      num: 15
+      clusters:
+        - id: ON_OFF
+          attributes:
+            - id: 0
+              type: bool
+              on_value:
+                then:
+                  - switch.toggle:
+                      id: light_15
+
+    - device_type: ON_OFF_LIGHT
+      num: 16
+      clusters:
+        - id: ON_OFF
+          attributes:
+            - id: 0
+              type: bool
+              on_value:
+                then:
+                  - switch.toggle:
+                      id: light_16
+
+switch:
+  - platform: gpio
     pin:
-      number: GPIO3
-           
+      number: GPIO00
+      inverted: true      
     id: light_1
-  - platform: status_led
+
+  - platform: gpio
+    pin:
+      number: GPIO01
+      inverted: true
+    id: light_2
+
+  - platform: gpio
+    pin:
+      number: GPIO02
+      inverted: true
+    id: light_3
+
+  - platform: gpio
+    pin:
+      number: GPIO03
+      inverted: true
+    id: light_4
+
+  - platform: gpio
+    pin:
+      number: GPIO04
+      inverted: true
+    id: light_5
+
+  - platform: gpio
+    pin:
+      number: GPIO05
+      inverted: true      
+    id: light_6
+
+  - platform: gpio
+    pin:
+      number: GPIO06
+      inverted: true
+    id: light_7
+
+  - platform: gpio
+    pin:
+      number: GPIO07
+      inverted: true
+    id: light_8
+
+  - platform: gpio
+    pin:
+      number: GPIO14
+      inverted: true
+    id: light_9
+
+  - platform: gpio
     pin:
       number: GPIO15
       inverted: true
-    id: light_2
-  - platform: status_led
+    id: light_10
+
+  - platform: gpio
     pin:
-      number: GPIO14
-      
-    id: light_3
+      number: GPIO18
+      inverted: true
+    id: light_11
 
+  - platform: gpio
+    pin:
+      number: GPIO19
+      inverted: true      
+    id: light_12
 
+  - platform: gpio
+    pin:
+      number: GPIO20
+      inverted: true
+    id: light_13
 
-    
+  - platform: gpio
+    pin:
+      number: GPIO21
+      inverted: true
+    id: light_14
+
+  - platform: gpio
+    pin:
+      number: GPIO23
+      inverted: true
+    id: light_15
+
+  - platform: gpio
+    pin:
+      number: GPIO22
+      inverted: true
+    id: light_16    
