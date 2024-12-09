@@ -1,0 +1,91 @@
+esphome:
+  name: zb-example-c6
+
+external_components:
+  - source: github://bieskholodov/zigbee_esphome
+    components: [ zigbee ]
+
+esp32:
+  board: esp32-c6-devkitc-1
+  flash_size: 4MB
+  partitions: partitions_zb.csv
+  framework:
+    platform_version: 6.6.0
+    type: esp-idf
+    version: 5.2.1
+    sdkconfig_options:
+      CONFIG_ESPTOOLPY_FLASHSIZE_4MB: y
+  variant: esp32c6
+
+# Enable logging
+logger:
+  hardware_uart: UART0
+
+
+
+
+
+zigbee:
+  id: "zb"
+  endpoints:
+    - num: 1
+      device_type: ON_OFF_LIGHT
+      clusters:
+        - id: ON_OFF
+          attributes:
+            - id: 0
+              type: bool
+              on_value:
+                then:
+                  - light.control:
+                      id: light_1
+                      state: !lambda "return (bool)x;"
+    - device_type: ON_OFF_LIGHT
+      num: 2
+      clusters:
+        - id: ON_OFF
+          attributes:
+            - id: 0
+              type: bool
+              on_value:
+                then:
+                  - light.control:
+                      id: light_2
+                      state: !lambda "return (bool)x;"
+    - device_type: ON_OFF_LIGHT
+      num: 3
+      clusters:
+        - id: ON_OFF
+          attributes:
+            - id: 0
+              type: bool
+              on_value:
+                then:
+                  - light.control:
+                      id: light_3
+                      state: !lambda "return (bool)x;"                      
+
+
+
+
+
+light:
+  - platform: status_led
+    pin:
+      number: GPIO3
+           
+    id: light_1
+  - platform: status_led
+    pin:
+      number: GPIO15
+      inverted: true
+    id: light_2
+  - platform: status_led
+    pin:
+      number: GPIO14
+      
+    id: light_3
+
+
+
+    
