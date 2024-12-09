@@ -1,7 +1,4 @@
-
-
-
-    esphome:
+esphome:
   name: zb-rele-16-esp32c6
 
 external_components:
